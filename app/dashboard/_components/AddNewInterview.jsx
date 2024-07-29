@@ -35,14 +35,24 @@ function AddNewInterview() {
     e.preventDefault();
     console.log(jobPosition, jobDesc, jobExperience);
 
-    const InputPrompt = `Job Position: ${jobPosition}, Job Description: ${jobDesc}, Years of Experience: ${jobExperience}, Depends on Job Position, Job Description and Years of Experience give us ${process.env.NEXT_PUBLIC_INTERVIEW_QUESTION_COUNT} Interview question along with Answer in JSON format, Give us question and answer field on JSON`;
+    const InputPrompt =
+      "Job Position: " +
+      jobPosition +
+      ", Job Description: " +
+      jobDesc +
+      ", Years of Experience: " +
+      jobExperience +
+      ", Depends on Job Position, Job Description and Years of Experience give us " +
+      process.env.NEXT_PUBLIC_INTERVIEW_QUESTION_COUNT +
+      " Interview Question along with Answer in JSON format, Give us question and answer field on JSON";
 
     const result = await chatSession.sendMessage(InputPrompt);
     const MockJsonResp = result.response
       .text()
-      .replace("```json", " ")
-      .replace("```", " ");
-    console.log(MockJsonResp);
+      .replace("```json", "")
+      .replace("```", "")
+      .trim();
+    console.log(JSON.parse(MockJsonResp));
     setJsonResponse(MockJsonResp);
     if (MockJsonResp) {
       const resp = await db
@@ -61,7 +71,7 @@ function AddNewInterview() {
       console.log("INSERTED ID", resp);
       if (resp) {
         setOpenDialog(false);
-        router.push(`/dashboard/interview${resp[0]?.mockId}`);
+        router.push("/dashboard/interview" + resp[0]?.mockId);
       }
     } else {
       console.error("error");
