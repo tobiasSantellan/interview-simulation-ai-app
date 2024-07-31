@@ -65,7 +65,7 @@ function AnswerSection({
       .trim();
     // console.log(MockJsonResp);
     const JsonFeedbackResponse = JSON.parse(MockJsonResp);
-    console.log(JsonFeedbackResponse);
+    // console.log(JsonFeedbackResponse);
 
     const resp = await db.insert(UserAnswer).values({
       mockIdRef: interviewData?.mockId,
