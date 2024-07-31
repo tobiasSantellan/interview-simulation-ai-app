@@ -3,6 +3,6 @@ export default {
   schema: "./utils/schema.js",
   dialect: "postgresql",
   dbCredentials: {
-    url: NEXT_PUBLIC_DRIZZLE_DB_URL,
+    url: "postgresql://neondb_owner:7F5LzeySIlEY@ep-old-wind-a5vns660.us-east-2.aws.neon.tech/neondb?sslmode=require",
   },
 };
