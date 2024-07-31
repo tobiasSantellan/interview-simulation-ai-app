@@ -32,7 +32,7 @@ function InterviewList() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-3">
         {interviewList?.length > 0
           ? interviewList.map((interview, index) => (
-              <InterviewItemCard interview={interview} key={index} />
+              <InterviewItemCard interview={interview} key={interview.id} />
             ))
           : [1, 2, 3, 4].map((item, index) => (
               <div className="h-[100px] w-full bg-gray-200 animate-pulse rounded-lg "></div>

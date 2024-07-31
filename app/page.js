@@ -6,6 +6,7 @@ export default function Home() {
   return (
     <div>
       <Image
+        alt="description"
         src={"/grid.svg"}
         className="absolute z-[-10] w-full"
         width={1200}
