@@ -69,7 +69,7 @@ export default function Page() {
                 Eligendi nam dolorum aliquam, quibusdam aperiam voluptatum.
               </p>
             </div>
-            <SignIn />;
+            <SignIn />
           </div>
         </main>
       </div>
