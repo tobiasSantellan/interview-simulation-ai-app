@@ -47,11 +47,25 @@ function AddNewInterview() {
       " Interview Question along with Answer in JSON format, Give us question and answer field on JSON";
 
     const result = await chatSession.sendMessage(InputPrompt);
-    const MockJsonResp = result.response
+    let MockJsonResp = result.response
       .text()
       .replace("```json", "")
       .replace("```", "")
       .trim();
+    let parsedMockJsonResp;
+    try {
+      parsedMockJsonResp = JSON.parse(MockJsonResp);
+      if (!Array.isArray(parsedMockJsonResp)) {
+        parsedMockJsonResp = [parsedMockJsonResp];
+      }
+    } catch (error) {
+      console.error("Error parsing JSON response:", error);
+      parsedMockJsonResp = [];
+    }
+
+    // Convert the array back to a JSON string
+    MockJsonResp = JSON.stringify(parsedMockJsonResp);
+
     // console.log(JSON.parse(MockJsonResp));
     setJsonResponse(MockJsonResp);
     if (MockJsonResp) {
@@ -71,7 +85,7 @@ function AddNewInterview() {
       // console.log("INSERTED ID", resp);
       if (resp) {
         setOpenDialog(false);
-        router.push("/dashboard/interview" + resp[0]?.mockId);
+        router.push(`/dashboard/interview/${resp[0].mockId}`);
       }
     } else {
       console.error("error");
