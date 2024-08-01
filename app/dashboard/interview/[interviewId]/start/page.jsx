@@ -10,7 +10,7 @@ import Link from "next/link";
 
 function StartInterview({ params }) {
   const [interviewData, setInterviewData] = useState();
-  const [mockInterviewQuestion, setMockInterviewQuestion] = useState();
+  const [mockInterviewQuestion, setMockInterviewQuestion] = useState([]);
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0);
   useEffect(() => {
     GetInterviewDetails();
@@ -26,8 +26,8 @@ function StartInterview({ params }) {
       .where(eq(MockInterview.mockId, params.interviewId));
 
     const jsonMockResp = JSON.parse(result[0].jsonMockResp);
-    // console.log(jsonMockResp);
-    setMockInterviewQuestion(jsonMockResp);
+    console.log(jsonMockResp);
+    setMockInterviewQuestion(jsonMockResp[0].questions);
     setInterviewData(result[0]);
   };
   return (
