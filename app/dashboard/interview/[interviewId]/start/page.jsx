@@ -29,7 +29,10 @@ function StartInterview({ params }) {
     // Extract questions safely
     const questions = Array.isArray(jsonMockResp)
       ? jsonMockResp[0].interview_questions
-      : jsonMockResp[0].questions;
+        ? jsonMockResp[0].interview_questions
+        : jsonMockResp[0].questions
+      : [];
+
     setMockInterviewQuestion(questions);
     setInterviewData(result[0]);
   };
